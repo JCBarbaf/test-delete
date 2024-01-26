@@ -10,6 +10,16 @@ module.exports = {
         autoIncrement: true,
         allowNull: false
       },
+      machineId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'employees',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'NO ACTION'
+      },
       employeeId: {
         type: Sequelize.INTEGER,
         allowNull: false,

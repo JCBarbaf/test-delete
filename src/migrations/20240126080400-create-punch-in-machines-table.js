@@ -10,19 +10,12 @@ module.exports = {
         autoIncrement: true,
         allowNull: false
       },
-      countryId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'countries',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'NO ACTION'
-      },
-      dialCode: {
+      location: {
         type: Sequelize.STRING,
         allowNull: false
+      },
+      lastChecked: {
+        type: Sequelize.DATE
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -32,7 +25,7 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false
       },
-      deletedAt: { 
+      deletedAt: {
         type: Sequelize.DATE
       }
     })
