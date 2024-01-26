@@ -14,7 +14,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'employees',
+          model: 'punch_in_machines',
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -55,8 +55,11 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    await queryInterface.addIndex('punch-ins', ['employeeId'], {
-      name: 'punch-ins_employeeId_fk'
+    await queryInterface.addIndex('punch_ins', ['employeeId'], {
+      name: 'punch_ins_employeeId_fk'
+    })
+    await queryInterface.addIndex('punch_ins', ['machineId'], {
+      name: 'punch_ins_machineId_fk'
     })
   },
 

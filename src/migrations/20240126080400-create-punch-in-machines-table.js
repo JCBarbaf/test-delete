@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('dial_codes', {
+    await queryInterface.createTable('punch_in_machines', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -12,6 +12,10 @@ module.exports = {
       },
       location: {
         type: Sequelize.STRING,
+        allowNull: false
+      },
+      active: {
+        type: Sequelize.BOOLEAN,
         allowNull: false
       },
       lastChecked: {
@@ -30,12 +34,9 @@ module.exports = {
       }
     })
 
-    await queryInterface.addIndex('dial_codes', ['countryId'], {
-      name: 'dial_codes_countryId_fk'
-    })
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('dial_codes')
+    await queryInterface.dropTable('punch_in_machines')
   }
 }
