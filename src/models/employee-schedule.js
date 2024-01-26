@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  const EmployeeSchedule = sequelize.define('EmployeeSchedule', {
+  const Employeeshift = sequelize.define('Employeeshift', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -15,12 +15,12 @@ module.exports = function (sequelize, DataTypes) {
         }
       }
     },
-    scheduleId: {
+    shiftId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
-          msg: 'The schedule is required.'
+          msg: 'The shift is required.'
         }
       }
     },
@@ -55,26 +55,26 @@ module.exports = function (sequelize, DataTypes) {
         ]
       },
       {
-        name: 'employee_schedules_employeeId_fk',
+        name: 'employee_shifts_employeeId_fk',
         using: 'BTREE',
         fields: [
           { name: 'employeeId' }
         ]
       },
       {
-        name: 'employee_schedules_scheduleId_fk',
+        name: 'employee_shifts_shiftId_fk',
         using: 'BTREE',
         fields: [
-          { name: 'scheduleId' }
+          { name: 'shiftId' }
         ]
       }
     ]
   })
 
-  EmployeeSchedule.associate = function (models) {
-    EmployeeSchedule.belongsTo(models.Employee, { as: 'employee', foreignKey: 'employeeId' })
-    EmployeeSchedule.belongsTo(models.Schedule, { as: 'schedule', foreignKey: 'scheduleId' })
+  Employeeshift.associate = function (models) {
+    Employeeshift.belongsTo(models.Employee, { as: 'employee', foreignKey: 'employeeId' })
+    Employeeshift.belongsTo(models.shift, { as: 'shift', foreignKey: 'shiftId' })
   }
 
-  return EmployeeSchedule
+  return Employeeshift
 }

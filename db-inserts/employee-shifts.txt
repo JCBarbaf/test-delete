@@ -1,4 +1,4 @@
-INSERT INTO employee_schedules (employeeId, scheduleId, createdAt, updatedAt)
+INSERT INTO employee_shifts (employeeId, shiftId, createdAt, updatedAt)
 VALUES
   (1, 1, NOW(), NOW()),
   (2, 2, NOW(), NOW()),

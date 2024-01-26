@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('employee_schedules', {
+    await queryInterface.createTable('employee_shifts', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -20,11 +20,11 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'NO ACTION'
       },
-      scheduleId: {
+      shiftId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'schedules',
+          model: 'shifts',
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -42,15 +42,15 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    await queryInterface.addIndex('employee_schedules', ['employeeId'], {
-      name: 'employee_schedules_employeeId_fk'
+    await queryInterface.addIndex('employee_shifts', ['employeeId'], {
+      name: 'employee_shifts_employeeId_fk'
     })
-    await queryInterface.addIndex('employee_schedules', ['scheduleId'], {
-      name: 'employee_schedules_scheduleId_fk'
+    await queryInterface.addIndex('employee_shifts', ['shiftId'], {
+      name: 'employee_shifts_shiftId_fk'
     })
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('employee_schedules')
+    await queryInterface.dropTable('employee_shifts')
   }
 }

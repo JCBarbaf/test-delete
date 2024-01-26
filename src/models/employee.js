@@ -84,9 +84,9 @@ module.exports = function (sequelize, DataTypes) {
 
   Employee.associate = function (models) {
     Employee.belongsTo(models.Department, { as: 'department', foreignKey: 'departmentId' })
-    Employee.hasMany(models.EmployeeSchedule, { as: 'employeeSchedules', foreignKey: 'employeeId' })
+    Employee.hasMany(models.Employeeshift, { as: 'employeeshifts', foreignKey: 'employeeId' })
     Employee.hasMany(models.PunchIn, { as: 'punchIns', foreignKey: 'employeeId' })
-    Employee.belongsToMany(models.Schedule, { through: models.EmployeeSchedule, as: 'schedules', foreignKey: 'employeeId' })
+    Employee.belongsToMany(models.shift, { through: models.Employeeshift, as: 'shifts', foreignKey: 'employeeId' })
   }
 
   return Employee

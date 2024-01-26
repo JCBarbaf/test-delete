@@ -9,12 +9,12 @@ FROM (
 		employees.lastnames,
 		punch_ins.action,
 		punch_ins.time,
-		schedules.startTime
+		shifts.startTime
 	FROM fichaje.punch_ins
 	INNER JOIN employees ON punch_ins.employeeId = employees.id
-	INNER JOIN employee_schedules ON employee_schedules.employeeId = employees.id
-	INNER JOIN schedules ON employee_schedules.scheduleId = schedules.id
-	WHERE punch_ins.action = 'entrada' AND punch_ins.time > schedules.startTime
+	INNER JOIN employee_shifts ON employee_shifts.employeeId = employees.id
+	INNER JOIN shifts ON employee_shifts.shiftId = shifts.id
+	WHERE punch_ins.action = 'entrada' AND punch_ins.time > shifts.startTime
 ) AS late_occurrences
 GROUP BY id
 ORDER BY occurrences DESC 

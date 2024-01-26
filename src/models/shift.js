@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  const Schedule = sequelize.define('Schedule', {
+  const shift = sequelize.define('shift', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -57,10 +57,10 @@ module.exports = function (sequelize, DataTypes) {
     ]
   })
 
-  Schedule.associate = function (models) {
-    Schedule.hasMany(models.EmployeeSchedule, { as: 'employeeSchedules', foreignKey: 'scheduleId' })
-    Schedule.belongsToMany(models.Employee, { through: models.EmployeeSchedule, as: 'employees', foreignKey: 'scheduleId' })
+  shift.associate = function (models) {
+    shift.hasMany(models.Employeeshift, { as: 'employeeshifts', foreignKey: 'shiftId' })
+    shift.belongsToMany(models.Employee, { through: models.Employeeshift, as: 'employees', foreignKey: 'shiftId' })
   }
 
-  return Schedule
+  return shift
 }
