@@ -1,0 +1,21 @@
+SELECT 
+	surname,
+    lastnames,
+	COUNT(*) AS occurrences
+FROM (
+	SELECT 
+		employees.id,
+		employees.surname,
+		employees.lastnames,
+		punch_ins.action,
+		punch_ins.time,
+		schedules.startTime
+	FROM fichaje.punch_ins
+	INNER JOIN employees ON punch_ins.employeeId = employees.id
+	INNER JOIN employee_schedules ON employee_schedules.employeeId = employees.id
+	INNER JOIN schedules ON employee_schedules.scheduleId = schedules.id
+	WHERE punch_ins.action = 'entrada' AND punch_ins.time > schedules.startTime
+) AS late_occurrences
+GROUP BY id
+ORDER BY occurrences DESC 
+LIMIT 1

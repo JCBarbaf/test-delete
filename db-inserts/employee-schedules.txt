@@ -1,0 +1,8 @@
+INSERT INTO employee_schedules (employeeId, scheduleId, createdAt, updatedAt)
+VALUES
+  (1, 1, NOW(), NOW()),
+  (2, 2, NOW(), NOW()),
+  (3, 3, NOW(), NOW()),
+  (4, 4, NOW(), NOW()),
+  (5, 5, NOW(), NOW()),
+  (6, 6, NOW(), NOW());

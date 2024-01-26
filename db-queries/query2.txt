@@ -1,0 +1,16 @@
+SELECT 
+	department,
+	TIME_FORMAT(SEC_TO_TIME(AVG(TIME_TO_SEC(hours))),'%h:%i:%s') AS hour_average
+FROM (
+	SELECT 
+		employees.id AS employee,
+		departments.name AS department,
+		SUBTIME(TIMEDIFF(MAX(punch_ins.time),MIN(punch_ins.time)),'01:00:00') AS hours,
+		punch_ins.date
+	FROM fichaje.punch_ins
+	INNER JOIN employees ON punch_ins.employeeId = employees.id
+	INNER JOIN departments ON employees.departmentId = departments.id
+	GROUP BY employees.id, punch_ins.date
+) AS hours_by_day
+WHERE MONTH(hours_by_day.date) = '01'
+GROUP BY department

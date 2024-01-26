@@ -1,0 +1,17 @@
+SELECT 
+	surname,
+    lastnames,
+	SEC_TO_TIME(SUM(TIME_TO_SEC(hours))) AS hours_total
+FROM (
+	SELECT 
+		employees.id,
+		employees.surname,
+        employees.lastnames,
+		SUBTIME(TIMEDIFF(MAX(punch_ins.time),MIN(punch_ins.time)),'01:00:00') AS hours,
+		punch_ins.date
+	FROM fichaje.punch_ins
+	INNER JOIN employees ON punch_ins.employeeId = employees.id
+	GROUP BY employees.id, punch_ins.date
+) AS hours_by_day
+WHERE hours_by_day.date >= '2024-01-28' AND hours_by_day.date <= '2024-01-30'
+GROUP BY hours_by_day.id

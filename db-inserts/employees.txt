@@ -1,0 +1,8 @@
+INSERT INTO employees (lastnames, surname, departmentId, rol, createdAt, updatedAt)
+VALUES
+  ('Smith', 'John', 1, 'HR Specialist', NOW(), NOW()),
+  ('Johnson', 'Emily', 2, 'Software Engineer', NOW(), NOW()),
+  ('Miller', 'Chris', 3, 'Sales Representative', NOW(), NOW()),
+  ('Davis', 'Jessica', 4, 'Marketing Coordinator', NOW(), NOW()),
+  ('Jones', 'Michael', 5, 'Financial Analyst', NOW(), NOW()),
+  ('Taylor', 'Amanda', 1, 'Operations Manager', NOW(), NOW());

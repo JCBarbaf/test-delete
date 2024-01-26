@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('employee_punch_ins', {
+    await queryInterface.createTable('employee_schedules', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -24,7 +24,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'shedules',
+          model: 'schedules',
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -42,15 +42,15 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    await queryInterface.addIndex('employee-schedules', ['employeeId'], {
-      name: 'employee-schedules_employeeId_fk'
+    await queryInterface.addIndex('employee_schedules', ['employeeId'], {
+      name: 'employee_schedules_employeeId_fk'
     })
-    await queryInterface.addIndex('employee-schedules', ['scheduleId'], {
-      name: 'employee-schedules_scheduleId_fk'
+    await queryInterface.addIndex('employee_schedules', ['scheduleId'], {
+      name: 'employee_schedules_scheduleId_fk'
     })
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('employee_punch_ins')
+    await queryInterface.dropTable('employee_schedules')
   }
 }

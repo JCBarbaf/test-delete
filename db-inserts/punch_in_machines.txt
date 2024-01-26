@@ -1,0 +1,8 @@
+INSERT INTO punch_in_machines (location, active, lastChecked, createdAt, updatedAt)
+VALUES
+  ('Entrance Lobby', 1, NOW(), NOW(), NOW()),
+  ('Office Floor 1', 1, NOW(), NOW(), NOW()),
+  ('Main Entrance', 1, NOW(), NOW(), NOW()),
+  ('Parking Area', 0, NOW(), NOW(), NOW()),
+  ('Break Room', 1, NOW(), NOW(), NOW()),
+  ('Conference Room', 1, NOW(), NOW(), NOW());

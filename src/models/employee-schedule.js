@@ -1,26 +1,26 @@
 module.exports = function (sequelize, DataTypes) {
-  const DialCode = sequelize.define('DialCode', {
+  const EmployeeSchedule = sequelize.define('EmployeeSchedule', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
       allowNull: false
     },
-    countryId: {
+    employeeId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
-          msg: 'Por favor, rellena el campo "contry".'
+          msg: 'The employee is required.'
         }
       }
     },
-    dialCode: {
-      type: DataTypes.STRING,
+    scheduleId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
-          msg: 'Por favor, rellena el campo "dialCode".'
+          msg: 'The schedule is required.'
         }
       }
     },
@@ -55,21 +55,26 @@ module.exports = function (sequelize, DataTypes) {
         ]
       },
       {
-        name: 'dial_codes_countryId_fk',
+        name: 'employee_schedules_employeeId_fk',
         using: 'BTREE',
         fields: [
-          { name: 'countryId' }
+          { name: 'employeeId' }
+        ]
+      },
+      {
+        name: 'employee_schedules_scheduleId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'scheduleId' }
         ]
       }
     ]
   })
 
-  DialCode.associate = function (models) {
-    DialCode.belongsTo(models.Country, { as: 'country', foreignKey: 'countryId' })
-
-    DialCode.hasMany(models.Company, { as: 'companies', foreignKey: 'dialCodeId' })
-    DialCode.hasMany(models.Customer, { as: 'customers', foreignKey: 'dialCodeId' })
+  EmployeeSchedule.associate = function (models) {
+    EmployeeSchedule.belongsTo(models.Employee, { as: 'employee', foreignKey: 'employeeId' })
+    EmployeeSchedule.belongsTo(models.Schedule, { as: 'schedule', foreignKey: 'scheduleId' })
   }
 
-  return DialCode
+  return EmployeeSchedule
 }

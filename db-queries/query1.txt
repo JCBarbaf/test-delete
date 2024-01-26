@@ -1,0 +1,6 @@
+SELECT 
+	departments.name AS department,
+	employees.*
+FROM fichaje.employees
+INNER JOIN departments ON employees.departmentId = departments.id
+WHERE departments.id = '1'

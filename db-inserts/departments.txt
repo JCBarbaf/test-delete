@@ -1,0 +1,8 @@
+INSERT INTO departments (name, createdAt, updatedAt)
+VALUES
+  ('Human Resources', NOW(), NOW()),
+  ('IT Department', NOW(), NOW()),
+  ('Sales Department', NOW(), NOW()),
+  ('Marketing Team', NOW(), NOW()),
+  ('Finance Department', NOW(), NOW()),
+  ('Operations Team', NOW(), NOW());

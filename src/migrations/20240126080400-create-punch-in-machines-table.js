@@ -11,12 +11,11 @@ module.exports = {
         allowNull: false
       },
       location: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.STRING
       },
       active: {
         type: Sequelize.BOOLEAN,
-        allowNull: false
+        default: 1
       },
       lastChecked: {
         type: Sequelize.DATE
